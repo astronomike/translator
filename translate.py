@@ -154,7 +154,17 @@ def translate_word(eng_word):
     arb_word : translated string of arabic unicode characters : string        
     """
     
-    arb_word = 0
+    arb_word = []
+    for i in range(len(eng_word)):
+        letter()
+        
+        if i == 0:    
+            arb_word.append(letter.dict_beg[letter.name])
+        elif i == len(eng_word):
+            arb_word.append(letter.dict_end[letter.name])
+        else:
+            arb_word.append(letter.dict_mid[letter.name])
+
     return arb_word
 
 def translate_line(eng_sent):
@@ -171,25 +181,14 @@ def translate_line(eng_sent):
     -------------------
     arb_sent : translated string of arabic unicode characters : string        
     """
-    n = len(eng_sent)
     arb_sent = []
     
     #main loop to run through sentence and append translated arabic chars
-    for i in range(n):
+    for i in range(len(eng_sent)):
         
         #find spaces that separate words. 
-        if eng_sent[i] == " ":
-            letter.position = 0     #next letter should be at the beginning 
-            continue
-        if eng_sent[i+1] == " ":
-            letter.position = 1     #next letter should be in the middle
-        
-        if letter.position == 0:    
-            arb_sent.append(letter.dict_beg[letter.name])
-        elif letter.position == 1:
-            arb_sent.append(letter.dict_mid[letter.name])
-        else:
-            arb_sent.append(letter.dict_end[letter.name])
+        if eng_sent[i] == " ":     
+            continue   
         
     return arb_sent
 
