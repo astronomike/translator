@@ -155,15 +155,16 @@ def translate_word(eng_word):
     """
     
     arb_word = []
+    print(eng_word)
     for i in range(len(eng_word)):
-        letter()
-        
+        l = letter()
+        l.name = eng_word[i]
         if i == 0:    
-            arb_word.append(letter.dict_beg[letter.name])
+            arb_word.append(l.dict_beg[l.name])
         elif i == len(eng_word):
-            arb_word.append(letter.dict_end[letter.name])
+            arb_word.append(l.dict_end[l.name])
         else:
-            arb_word.append(letter.dict_mid[letter.name])
+            arb_word.append(l.dict_mid[l.name])
 
     return arb_word
 
@@ -200,7 +201,7 @@ def translate_file(infile):
             lines = df.read().splitlines()
             
             for i in range(len(lines)):
-                if (lines[i] == "" or lines[i][0] == "#" or lines[i][0] == "\n"):
+                if (lines[i] == "") or (lines[i][0] == "#") or (lines[i][0] == "\n"):
                     continue
                 else:
                     parameters.append(lines[i].split(" = "))
@@ -212,6 +213,8 @@ def translate_file(infile):
 ######################################################################
 Execution
 """
+eng_word = sys.argv[1]
+print(translate_word(eng_word))
 
 
 
